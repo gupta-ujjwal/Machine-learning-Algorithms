@@ -29,8 +29,19 @@ lin_reg.fit(X, y)
 
 #Create Polynomial Regression model
 from sklearn.preprocessing import PolynomialFeatures
-poly_reg = PolynomialFeatures(degree = 2)
+poly_reg = PolynomialFeatures(degree = 6)
 X_poly = poly_reg.fit_transform(X)
 poly_reg.fit(X_poly, y)
 lin_reg2 = LinearRegression()
 lin_reg2.fit(X_poly, y)
+
+#visualizing results of Polynomial
+X_grid = np.arange(min(X), max(X)+0.1, 0.1)
+X_grid = X_grid.reshape((len(X_grid)), 1)
+plt.scatter(X, y, color = 'red')
+plt.plot(X_grid, lin_reg2.predict(poly_reg.fit_transform(X_grid)), color = 'blue')
+plt.title('Polynomial Regression')
+plt.xlabel('Position Level')
+plt.ylabel('Salary(in $)')
+plt.show()
+
