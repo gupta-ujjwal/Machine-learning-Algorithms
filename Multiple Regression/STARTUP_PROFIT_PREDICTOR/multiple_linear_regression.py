@@ -51,3 +51,7 @@ X_opt = X[:, [0, 3]]
 regressor_OLS = sm.OLS(endog = y, exog = X_opt).fit()
 regressor_OLS.summary()
 
+#Improved result after backward elemination
+regressor = LinearRegression()
+regressor.fit(X_train[:,[2,4]], y_train)
+Y_pred_final = regressor.predict(X_test[:,[2,4]])
